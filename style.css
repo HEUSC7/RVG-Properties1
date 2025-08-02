@@ -1253,6 +1253,27 @@ main {
   gap: var(--space-16);
 }
 
+/* Image Preview Styling */
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  margin-top: var(--space-12);
+}
+
+.preview-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--radius-base);
+  border: 2px solid var(--color-border);
+  transition: transform var(--duration-fast);
+}
+
+.preview-image:hover {
+  transform: scale(1.05);
+}
+
 /* Modal */
 .modal {
   position: fixed;
