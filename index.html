@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RVG Properties - Find Your Dream Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <span>RVG</span>
+                </div>
+                <span class="logo-text">RVG Properties</span>
+            </div>
+            
+            <!-- Public Navigation -->
+            <div class="nav-menu" id="publicNav">
+                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="properties">Properties</a>
+                <a href="#" class="nav-link" data-page="post-property">Post Property</a>
+                <a href="#" class="nav-link" data-page="about">About</a>
+                <a href="#" class="nav-link" data-page="contact">Contact</a>
+            </div>
+            
+            <!-- Admin Navigation (Hidden by default) -->
+            <div class="nav-menu admin-only hidden" id="adminNav">
+                <a href="#" class="nav-link" data-page="admin-dashboard">Dashboard</a>
+                <a href="#" class="nav-link" data-page="manage-properties">Manage Properties</a>
+                <a href="#" class="nav-link" data-page="manage-users">Manage Users</a>
+                <a href="#" class="nav-link" data-page="inquiries">Inquiries</a>
+                <a href="#" class="nav-link" data-page="analytics">Analytics</a>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn btn--primary" id="loginBtn">Login</button>
+                <button class="btn btn--outline admin-only hidden" id="logoutBtn">Logout</button>
+                <span class="user-info admin-only hidden" id="userInfo"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div class="modal hidden" id="loginModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to RVG Properties</h3>
+                <button class="modal-close" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                    </div>
+                </form>
+                <div class="login-help">
+                    <p><strong>Demo Credentials:</strong></p>
+                    <p>Admin: rvgproperties@gmail.com / RVG@admin</p>
+                    <p>User: demo@user.com / demo123</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <div class="page active" id="homePage">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-background"></div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Find Your Perfect Home</h1>
+                    <p class="hero-subtitle">Discover thousands of properties with RVG Properties</p>
+                    
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <div class="search-tabs">
+                            <button class="search-tab active" data-type="buy">Buy</button>
+                            <button class="search-tab" data-type="rent">Rent</button>
+                        </div>
+                        <div class="search-inputs">
+                            <select class="form-control" id="searchCity">
+                                <option value="">Select City</option>
+                            </select>
+                            <select class="form-control" id="searchType">
+                                <option value="">Property Type</option>
+                            </select>
+                            <select class="form-control" id="searchCategory">
+                                <option value="">Category</option>
+                            </select>
+                            <button class="btn btn--primary search-btn" id="searchBtn">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Properties -->
+            <section class="featured-section">
+                <div class="container">
+                    <h2 class="section-title">Featured Properties</h2>
+                    <div class="properties-grid" id="featuredProperties"></div>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-section">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-home"></i></div>
+                            <div class="stat-content">
+                                <h3 class="stat-number" id="totalPropertiesCount">0</h3>
+                                <p class="stat-label">Properties Listed</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-content">
+                                <h3 class="stat-number" id="totalUsersCount">0</h3>
+                                <p class="stat-label">Happy Customers</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-city"></i></div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">13</h3>
+                                <p class="stat-label">Cities Covered</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">100%</h3>
+                                <p class="stat-label">Satisfaction Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="testimonials-section">
+                <div class="container">
+                    <h2 class="section-title">What Our Customers Say</h2>
+                    <div class="testimonials-grid" id="testimonialsGrid"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Properties Page -->
+        <div class="page" id="propertiesPage">
+            <div class="container">
+                <div class="page-header">
+                    <h1>All Properties</h1>
+                    <div class="page-filters">
+                        <select class="form-control" id="filterCity">
+                            <option value="">All Cities</option>
+                        </select>
+                        <select class="form-control" id="filterType">
+                            <option value="">All Types</option>
+                        </select>
+                        <select class="form-control" id="filterForType">
+                            <option value="">Buy/Rent</option>
+                            <option value="Buy">Buy</option>
+                            <option value="Rent">Rent</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="properties-grid" id="allProperties"></div>
+            </div>
+        </div>
+
+        <!-- Post Property Page -->
+        <div class="page" id="postPropertyPage">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Post Your Property</h1>
+                    <p>List your property and reach thousands of potential buyers/renters</p>
+                </div>
+                
+                <div class="form-container">
+                    <form id="postPropertyForm" class="property-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Property Title</label>
+                                <input type="text" class="form-control" id="propertyTitle" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">For</label>
+                                <select class="form-control" id="propertyForType" required>
+                                    <option value="">Select</option>
+                                    <option value="Buy">Sale</option>
+                                    <option value="Rent">Rent</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Property Type</label>
+                                <select class="form-control" id="propertyType" required>
+                                    <option value="">Select Type</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Category</label>
+                                <select class="form-control" id="propertyCategory" required>
+                                    <option value="">Select Category</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Price (â¹)</label>
+                                <input type="number" class="form-control" id="propertyPrice" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Location/City</label>
+                                <select class="form-control" id="propertyLocation" required>
+                                    <option value="">Select City</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Area (sq ft)</label>
+                                <input type="number" class="form-control" id="propertyArea" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Furnishing</label>
+                                <select class="form-control" id="propertyFurnishing" required>
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" id="propertyDescription" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Contact Name</label>
+                            <input type="text" class="form-control" id="contactName" required>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="contactPhone" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="contactEmail" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn--primary btn--lg">
+                                <i class="fas fa-paper-plane"></i> Submit Property
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard (Hidden from regular users) -->
+        <div class="page admin-only hidden" id="adminDashboardPage">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h1>Admin Dashboard</h1>
+                    <p>Welcome to RVG Properties Admin Panel</p>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="dashboard-card">
+                        <div class="card-icon success"><i class="fas fa-home"></i></div>
+                        <div class="card-content">
+                            <h3 id="dashTotalProperties">0</h3>
+                            <p>Total Properties</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-icon warning"><i class="fas fa-clock"></i></div>
+                        <div class="card-content">
+                            <h3 id="dashPendingProperties">0</h3>
+                            <p>Pending Approval</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-icon info"><i class="fas fa-users"></i></div>
+                        <div class="card-content">
+                            <h3 id="dashTotalUsers">0</h3>
+                            <p>Total Users</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-icon error"><i class="fas fa-question-circle"></i></div>
+                        <div class="card-content">
+                            <h3 id="dashPendingInquiries">0</h3>
+                            <p>Pending Inquiries</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="dashboard-section">
+                        <h3>Recent Activities</h3>
+                        <div class="activity-list" id="recentActivities">
+                            <!-- Activities will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Properties (Admin Only) -->
+        <div class="page admin-only hidden" id="managePropertiesPage">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h1>Manage Properties</h1>
+                    <div class="admin-filters">
+                        <select class="form-control" id="adminPropertyFilter">
+                            <option value="">All Properties</option>
+                            <option value="approved">Approved</option>
+                            <option value="pending">Pending</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Type</th>
+                                <th>Price</th>
+                                <th>Location</th>
+                                <th>Posted By</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminPropertiesTable">
+                            <!-- Table content populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div class="page" id="aboutPage">
+            <div class="container">
+                <div class="about-content">
+                    <h1>About RVG Properties</h1>
+                    <p>RVG Properties is a leading real estate platform connecting property buyers, sellers, and renters across India. With our extensive network and advanced technology, we make property transactions simple, transparent, and secure.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Verified Properties</h3>
+                            <p>All properties are verified and approved by our expert team</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Expert Support</h3>
+                            <p>Professional real estate experts to guide you through every step</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>Easy Access</h3>
+                            <p>User-friendly platform accessible from any device</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div class="page" id="contactPage">
+            <div class="container">
+                <div class="contact-content">
+                    <h1>Contact Us</h1>
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h3>Address</h3>
+                                    <p>123 Business District, Mumbai, Maharashtra 400001</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h3>Phone</h3>
+                                    <p>+91 99999 99999</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h3>Email</h3>
+                                    <p>info@rvgproperties.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn--primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Property Details Modal -->
+    <div class="modal hidden" id="propertyModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content property-modal">
+            <div class="modal-header">
+                <h3 id="modalPropertyTitle">Property Details</h3>
+                <button class="modal-close" id="closePropertyModal">&times;</button>
+            </div>
+            <div class="modal-body" id="propertyModalBody">
+                <!-- Property details populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div class="toast hidden" id="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
