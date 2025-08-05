@@ -14,12 +14,13 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand">
+            <div class="nav-brand" id="navBrand">
                 <div class="brand-logo">
                     <h2>RVG Properties</h2>
                     <span class="brand-tagline">Find Your Dream Home</span>
                 </div>
             </div>
+            <button id="navToggle" class="nav-toggle">&#9776;</button>
             <div class="nav-menu" id="navMenu">
                 <a href="#" data-page="home" class="nav-link active">Home</a>
                 <a href="#" data-page="properties" class="nav-link">Properties</a>
@@ -34,69 +35,50 @@
                     </div>
                     <div class="user-menu hidden" id="userMenu">
                         <div class="user-info" id="userInfo">
-                            <span class="user-avatar">👤</span>
-                            <span class="user-name" id="userName"></span>
-                        </div>
-                        <div class="user-dropdown" id="userDropdown">
-                            <button class="btn btn--secondary btn--sm" id="postPropertyBtn">📝 Post Property</button>
-                            <button class="btn btn--outline btn--sm" id="myPropertiesBtn">🏠 My Properties</button>
-                            <button class="btn btn--outline btn--sm" id="wishlistBtn">❤️ Wishlist</button>
-                            <div class="admin-controls hidden" id="adminControls">
-                                <button class="btn btn--primary btn--sm" id="adminDashboardBtn">⚙️ Admin Dashboard</button>
-                            </div>
-                            <button class="btn btn--outline btn--sm" id="logoutBtn">🚪 Logout</button>
+                            <span class="user-name" id="userName">Welcome User</span>
+                            <button class="btn btn--outline btn--sm" id="logoutBtn">Logout</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main id="mainContent">
+    <main class="main-content">
         <!-- Home Page -->
-        <div id="homePage" class="page active">
+        <section class="page active" id="homePage">
             <!-- Hero Section -->
             <section class="hero">
-                <div class="hero-background"></div>
                 <div class="container">
                     <div class="hero-content">
                         <h1 class="hero-title">Discover Your Perfect Home</h1>
                         <p class="hero-subtitle">India's most trusted real estate platform with 50,000+ verified properties</p>
                         
-                        <!-- Advanced Search Form -->
+                        <!-- Hero Search -->
                         <div class="hero-search">
                             <div class="search-tabs">
-                                <button class="search-tab active" data-type="Buy">Buy</button>
-                                <button class="search-tab" data-type="Rent">Rent</button>
-                                <button class="search-tab" data-type="PG">PG/Co-living</button>
+                                <button class="search-tab active" data-type="buy">Buy</button>
+                                <button class="search-tab" data-type="rent">Rent</button>
                             </div>
                             <div class="search-form">
-                                <div class="search-fields">
-                                    <div class="search-field location-field">
-                                        <input type="text" placeholder="Search Location" id="searchLocation" class="form-control search-input">
-                                        <span class="search-icon">🔍</span>
-                                    </div>
-                                    <select id="searchType" class="form-control">
+                                <div class="search-row">
+                                    <select class="search-input" id="heroPropertyType">
                                         <option value="">Property Type</option>
+                                        <option value="1BHK">1BHK</option>
+                                        <option value="2BHK">2BHK</option>
+                                        <option value="3BHK">3BHK</option>
+                                        <option value="4BHK+">4BHK+</option>
                                     </select>
-                                    <select id="searchBudget" class="form-control">
+                                    <select class="search-input" id="heroBudget">
                                         <option value="">Budget</option>
-                                        <option value="0-2500000">Under ₹25 Lakh</option>
-                                        <option value="2500000-5000000">₹25 Lakh - ₹50 Lakh</option>
-                                        <option value="5000000-10000000">₹50 Lakh - ₹1 Crore</option>
-                                        <option value="10000000-50000000">₹1 Crore - ₹5 Crore</option>
-                                        <option value="50000000-999999999">₹5 Crore+</option>
+                                        <option value="Under ₹25 Lakh">Under ₹25 Lakh</option>
+                                        <option value="₹25 Lakh - ₹50 Lakh">₹25 Lakh - ₹50 Lakh</option>
+                                        <option value="₹50 Lakh - ₹1 Crore">₹50 Lakh - ₹1 Crore</option>
+                                        <option value="₹1 Crore - ₹5 Crore">₹1 Crore - ₹5 Crore</option>
+                                        <option value="₹5 Crore+">₹5 Crore+</option>
                                     </select>
-                                    <button class="btn btn--primary search-btn" id="heroSearchBtn">
-                                        <span>Search</span>
-                                        <span class="search-count" id="searchCount">50,000+ properties</span>
-                                    </button>
+                                    <button class="btn btn--primary search-btn" id="heroSearchBtn">🔍 Search</button>
                                 </div>
                             </div>
                         </div>
@@ -104,8 +86,8 @@
                 </div>
             </section>
 
-            <!-- Quick Stats -->
-            <section class="quick-stats">
+            <!-- Stats Section -->
+            <section class="stats">
                 <div class="container">
                     <div class="stats-grid">
                         <div class="stat-item">
@@ -138,38 +120,39 @@
                     <div class="section-header">
                         <h2>Featured Properties</h2>
                         <p>Handpicked premium properties for you</p>
-                        <button class="btn btn--outline" id="viewAllFeatured">View All Featured</button>
                     </div>
-                    <div class="properties-carousel" id="featuredPropertiesGrid">
-                        <!-- Properties will be loaded here -->
+                    <div class="properties-grid" id="featuredPropertiesGrid">
+                        <!-- Properties will be rendered here by JavaScript -->
                     </div>
                 </div>
             </section>
 
-            <!-- Property Categories -->
-            <section class="property-categories">
+            <!-- Categories Section -->
+            <section class="categories">
                 <div class="container">
-                    <h2>Explore Properties by Category</h2>
+                    <div class="section-header">
+                        <h2>Explore Properties by Category</h2>
+                    </div>
                     <div class="categories-grid">
-                        <div class="category-card" data-category="Apartment">
+                        <div class="category-card">
                             <div class="category-icon">🏢</div>
                             <h3>Apartments</h3>
                             <p>Modern living spaces in prime locations</p>
                             <span class="category-count">25,000+ properties</span>
                         </div>
-                        <div class="category-card" data-category="Villa">
+                        <div class="category-card">
                             <div class="category-icon">🏡</div>
                             <h3>Villas</h3>
                             <p>Luxury independent houses with privacy</p>
                             <span class="category-count">8,000+ properties</span>
                         </div>
-                        <div class="category-card" data-category="Plot">
+                        <div class="category-card">
                             <div class="category-icon">🏞️</div>
                             <h3>Plots</h3>
                             <p>Residential and commercial land</p>
                             <span class="category-count">12,000+ properties</span>
                         </div>
-                        <div class="category-card" data-category="Commercial">
+                        <div class="category-card">
                             <div class="category-icon">🏢</div>
                             <h3>Commercial</h3>
                             <p>Office spaces and retail properties</p>
@@ -182,42 +165,32 @@
             <!-- Popular Locations -->
             <section class="popular-locations">
                 <div class="container">
-                    <h2>Popular Locations</h2>
+                    <div class="section-header">
+                        <h2>Popular Locations</h2>
+                    </div>
                     <div class="locations-grid">
-                        <div class="location-card" data-location="Mumbai">
-                            <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&h=300&fit=crop')"></div>
-                            <div class="location-info">
-                                <h3>Mumbai</h3>
-                                <p>15,000+ properties</p>
-                            </div>
+                        <div class="location-card">
+                            <h3>Mumbai</h3>
+                            <span class="location-count">15,000+ properties</span>
                         </div>
-                        <div class="location-card" data-location="Bangalore">
-                            <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1596176530529-78163a4f043f?w=400&h=300&fit=crop')"></div>
-                            <div class="location-info">
-                                <h3>Bangalore</h3>
-                                <p>12,000+ properties</p>
-                            </div>
+                        <div class="location-card">
+                            <h3>Bangalore</h3>
+                            <span class="location-count">12,000+ properties</span>
                         </div>
-                        <div class="location-card" data-location="Delhi">
-                            <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop')"></div>
-                            <div class="location-info">
-                                <h3>Delhi NCR</h3>
-                                <p>18,000+ properties</p>
-                            </div>
+                        <div class="location-card">
+                            <h3>Delhi NCR</h3>
+                            <span class="location-count">18,000+ properties</span>
                         </div>
-                        <div class="location-card" data-location="Pune">
-                            <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&h=300&fit=crop')"></div>
-                            <div class="location-info">
-                                <h3>Pune</h3>
-                                <p>8,000+ properties</p>
-                            </div>
+                        <div class="location-card">
+                            <h3>Pune</h3>
+                            <span class="location-count">8,000+ properties</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Services -->
-            <section class="home-services">
+            <!-- Services Overview -->
+            <section class="services-overview">
                 <div class="container">
                     <div class="section-header">
                         <h2>Our Services</h2>
@@ -251,735 +224,407 @@
             <!-- Testimonials -->
             <section class="testimonials">
                 <div class="container">
-                    <h2>What Our Customers Say</h2>
-                    <div class="testimonials-carousel" id="testimonialsGrid">
-                        <!-- Testimonials will be loaded here -->
+                    <div class="section-header">
+                        <h2>What Our Customers Say</h2>
+                    </div>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <p>"RVG Properties helped me find the perfect home in Mumbai. Their service was exceptional and the process was smooth."</p>
+                            <div class="testimonial-author">
+                                <strong>Rahul Sharma</strong>
+                                <span>Mumbai</span>
+                                <div class="rating">⭐⭐⭐⭐⭐</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"Great platform with genuine listings. Found my dream apartment through RVG Properties within a week!"</p>
+                            <div class="testimonial-author">
+                                <strong>Priya Menon</strong>
+                                <span>Bangalore</span>
+                                <div class="rating">⭐⭐⭐⭐⭐</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"Professional service and transparent pricing. Highly recommend RVG Properties for property buying and selling."</p>
+                            <div class="testimonial-author">
+                                <strong>Amit Patel</strong>
+                                <span>Delhi</span>
+                                <div class="rating">⭐⭐⭐⭐</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-        </div>
+        </section>
 
         <!-- Properties Page -->
-        <div id="propertiesPage" class="page">
-            <section class="properties-section">
-                <div class="container">
-                    <div class="properties-header">
-                        <h1>Properties for Sale & Rent</h1>
-                        <div class="view-options">
-                            <button class="view-btn active" data-view="grid">⊞ Grid</button>
-                            <button class="view-btn" data-view="list">☰ List</button>
-                            <button class="view-btn" data-view="map">🗺️ Map</button>
+        <section class="page" id="propertiesPage">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Properties for Sale & Rent</h1>
+                </div>
+                
+                <div class="properties-layout">
+                    <!-- Filters Sidebar -->
+                    <aside class="filters-sidebar">
+                        <h3>Filters</h3>
+                        
+                        <div class="filter-group">
+                            <label>Location</label>
+                            <select class="filter-input" id="locationFilter">
+                                <option value="">All Locations</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Gurgaon">Gurgaon</option>
+                                <option value="Pune">Pune</option>
+                            </select>
                         </div>
-                    </div>
-                    
-                    <!-- Advanced Filters -->
-                    <div class="filters-panel">
-                        <div class="filters-header">
-                            <h3>Filters</h3>
-                            <button class="btn btn--outline btn--sm" id="clearAllFilters">Clear All</button>
-                        </div>
-                        <div class="filters-content">
-                            <div class="filter-group">
-                                <label>Location</label>
-                                <input type="text" id="filterLocation" class="form-control" placeholder="Search location">
-                            </div>
-                            <div class="filter-group">
-                                <label>Property Type</label>
-                                <select id="filterType" class="form-control">
-                                    <option value="">All Types</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label>Category</label>
-                                <select id="filterCategory" class="form-control">
-                                    <option value="">All Categories</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label>For</label>
-                                <select id="filterFor" class="form-control">
-                                    <option value="">Buy/Rent</option>
-                                    <option value="Buy">Buy</option>
-                                    <option value="Rent">Rent</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label>Budget Range</label>
-                                <div class="budget-range">
-                                    <input type="number" id="minBudget" class="form-control" placeholder="Min">
-                                    <span>to</span>
-                                    <input type="number" id="maxBudget" class="form-control" placeholder="Max">
-                                </div>
-                            </div>
-                            <div class="filter-group">
-                                <label>Furnishing</label>
-                                <div class="checkbox-group">
-                                    <label><input type="checkbox" value="Fully Furnished"> Fully Furnished</label>
-                                    <label><input type="checkbox" value="Semi-Furnished"> Semi-Furnished</label>
-                                    <label><input type="checkbox" value="Unfurnished"> Unfurnished</label>
-                                </div>
-                            </div>
-                            <div class="filter-group">
-                                <label>Amenities</label>
-                                <div class="checkbox-group amenities-group" id="amenitiesFilter">
-                                    <!-- Amenities will be loaded here -->
-                                </div>
-                            </div>
-                            <button class="btn btn--primary btn--full-width" id="applyFiltersBtn">Apply Filters</button>
-                        </div>
-                    </div>
 
-                    <!-- Sort Options -->
-                    <div class="sort-options">
-                        <span>Sort by:</span>
-                        <select id="sortBy" class="form-control">
-                            <option value="relevance">Relevance</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                            <option value="area-large">Area: Large to Small</option>
-                            <option value="area-small">Area: Small to Large</option>
-                            <option value="date-new">Newly Added</option>
-                        </select>
-                        <div class="results-count">
-                            <span id="resultsCount">Loading...</span>
+                        <div class="filter-group">
+                            <label>Property Type</label>
+                            <select class="filter-input" id="propertyTypeFilter">
+                                <option value="">All Types</option>
+                                <option value="1BHK">1BHK</option>
+                                <option value="2BHK">2BHK</option>
+                                <option value="3BHK">3BHK</option>
+                                <option value="4BHK+">4BHK+</option>
+                            </select>
                         </div>
-                    </div>
 
-                    <!-- Properties Grid -->
-                    <div class="properties-container">
-                        <div class="properties-grid" id="allPropertiesGrid">
-                            <!-- Properties will be loaded here -->
+                        <div class="filter-group">
+                            <label>Category</label>
+                            <select class="filter-input" id="categoryFilter">
+                                <option value="">All Categories</option>
+                                <option value="Apartment">Apartment</option>
+                                <option value="Villa">Villa</option>
+                                <option value="House">House</option>
+                                <option value="Studio">Studio</option>
+                                <option value="Penthouse">Penthouse</option>
+                                <option value="Plot">Plot</option>
+                            </select>
                         </div>
-                        <div class="load-more">
-                            <button class="btn btn--outline" id="loadMoreBtn">Load More Properties</button>
+
+                        <div class="filter-group">
+                            <label>For</label>
+                            <select class="filter-input" id="forTypeFilter">
+                                <option value="">Buy/Rent</option>
+                                <option value="Buy">Buy</option>
+                                <option value="Rent">Rent</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Budget Range</label>
+                            <div class="range-inputs">
+                                <input type="number" class="filter-input" id="minPriceFilter" placeholder="Min">
+                                <span>to</span>
+                                <input type="number" class="filter-input" id="maxPriceFilter" placeholder="Max">
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Furnishing</label>
+                            <select class="filter-input" id="furnishingFilter">
+                                <option value="">All Types</option>
+                                <option value="Fully Furnished">Fully Furnished</option>
+                                <option value="Semi-Furnished">Semi-Furnished</option>
+                                <option value="Unfurnished">Unfurnished</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Amenities</label>
+                            <div class="amenities-grid">
+                                <button class="amenity-btn" data-amenity="Swimming Pool">Swimming Pool</button>
+                                <button class="amenity-btn" data-amenity="Gym">Gym</button>
+                                <button class="amenity-btn" data-amenity="Security">Security</button>
+                                <button class="amenity-btn" data-amenity="Power Backup">Power Backup</button>
+                                <button class="amenity-btn" data-amenity="Elevator">Elevator</button>
+                                <button class="amenity-btn" data-amenity="Park">Park</button>
+                                <button class="amenity-btn" data-amenity="Club House">Club House</button>
+                                <button class="amenity-btn" data-amenity="Kids Play Area">Kids Play Area</button>
+                                <button class="amenity-btn" data-amenity="Garden">Garden</button>
+                                <button class="amenity-btn" data-amenity="Terrace Garden">Terrace Garden</button>
+                            </div>
+                        </div>
+
+                        <button class="btn btn--outline clear-filters-btn" id="clearFiltersBtn">Clear Filters</button>
+                    </aside>
+
+                    <!-- Properties Content -->
+                    <div class="properties-content">
+                        <div class="properties-header">
+                            <div class="sort-section">
+                                <label>Sort by:</label>
+                                <select class="sort-select" id="sortSelect">
+                                    <option value="relevance">Relevance</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="area-large">Area: Large to Small</option>
+                                    <option value="area-small">Area: Small to Large</option>
+                                    <option value="newest">Newly Added</option>
+                                </select>
+                            </div>
+                            <div class="results-count" id="resultsCount">
+                                4 properties found
+                            </div>
+                        </div>
+
+                        <div class="properties-grid" id="propertiesGrid">
+                            <!-- Properties will be rendered here by JavaScript -->
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
 
         <!-- Services Page -->
-        <div id="servicesPage" class="page">
-            <section class="services-detail">
-                <div class="container">
+        <section class="page" id="servicesPage">
+            <div class="container">
+                <div class="page-header">
                     <h1>Our Services</h1>
-                    <div class="services-content">
-                        <div class="service-detail-card">
-                            <h3>🏠 Property Search & Discovery</h3>
-                            <p>Advanced search engine with AI-powered recommendations, virtual tours, and detailed property analytics.</p>
-                        </div>
-                        <div class="service-detail-card">
-                            <h3>💰 Home Loan Assistance</h3>
-                            <p>Get pre-approved home loans from 40+ partner banks with competitive interest rates and quick processing.</p>
-                        </div>
-                        <div class="service-detail-card">
-                            <h3>📋 Legal & Documentation</h3>
-                            <p>Complete legal verification, title checks, and documentation support for safe property transactions.</p>
-                        </div>
-                        <div class="service-detail-card">
-                            <h3>🔧 Property Management</h3>
-                            <p>End-to-end property management services including tenant management, maintenance, and rent collection.</p>
-                        </div>
+                </div>
+                
+                <div class="services-detailed">
+                    <div class="service-detail">
+                        <div class="service-icon">🏠</div>
+                        <h3>Property Search & Discovery</h3>
+                        <p>Advanced search engine with AI-powered recommendations, virtual tours, and detailed property analytics.</p>
+                    </div>
+                    
+                    <div class="service-detail">
+                        <div class="service-icon">💰</div>
+                        <h3>Home Loan Assistance</h3>
+                        <p>Get pre-approved home loans from 40+ partner banks with competitive interest rates and quick processing.</p>
+                    </div>
+                    
+                    <div class="service-detail">
+                        <div class="service-icon">📋</div>
+                        <h3>Legal & Documentation</h3>
+                        <p>Complete legal verification, title checks, and documentation support for safe property transactions.</p>
+                    </div>
+                    
+                    <div class="service-detail">
+                        <div class="service-icon">🔧</div>
+                        <h3>Property Management</h3>
+                        <p>End-to-end property management services including tenant management, maintenance, and rent collection.</p>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
 
         <!-- About Page -->
-        <div id="aboutPage" class="page">
-            <section class="about-section">
-                <div class="container">
-                    <div class="about-hero">
-                        <h1>About RVG Properties</h1>
-                        <p class="about-intro">India's most trusted real estate platform, connecting millions of property seekers with their dream homes since 2010.</p>
+        <section class="page" id="aboutPage">
+            <div class="container">
+                <div class="page-header">
+                    <h1>About RVG Properties</h1>
+                    <p>India's most trusted real estate platform, connecting millions of property seekers with their dream homes since 2010.</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-section">
+                        <h2>Our Story</h2>
+                        <p>Founded in 2010, RVG Properties has revolutionized the way people buy, sell, and rent properties in India. What started as a small team's vision to make real estate transparent and accessible has grown into India's largest property platform.</p>
+                        <p>With over 50,000+ verified properties across 100+ cities, we've helped more than 1 lakh families find their perfect homes. Our commitment to transparency, technology, and customer satisfaction has made us the preferred choice for property seekers nationwide.</p>
+                        
+                        <h3>Our Mission</h3>
+                        <p>To make property search simple, transparent, and accessible for everyone through innovative technology and exceptional service.</p>
+                        
+                        <h3>Our Vision</h3>
+                        <p>To be India's most trusted real estate platform that empowers informed property decisions.</p>
                     </div>
                     
-                    <div class="about-content">
-                        <div class="about-story">
-                            <h2>Our Story</h2>
-                            <p>Founded in 2010, RVG Properties has revolutionized the way people buy, sell, and rent properties in India. What started as a small team's vision to make real estate transparent and accessible has grown into India's largest property platform.</p>
-                            <p>With over 50,000+ verified properties across 100+ cities, we've helped more than 1 lakh families find their perfect homes. Our commitment to transparency, technology, and customer satisfaction has made us the preferred choice for property seekers nationwide.</p>
-                        </div>
-
-                        <div class="mission-vision">
-                            <div class="mission">
-                                <h3>Our Mission</h3>
-                                <p>To make property search simple, transparent, and accessible for everyone through innovative technology and exceptional service.</p>
+                    <div class="why-choose">
+                        <h2>Why Choose RVG Properties?</h2>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">✅</div>
+                                <h3>100% Verified Listings</h3>
+                                <p>Every property is verified by our expert team for authenticity and accuracy</p>
                             </div>
-                            <div class="vision">
-                                <h3>Our Vision</h3>
-                                <p>To be India's most trusted real estate platform that empowers informed property decisions.</p>
+                            <div class="feature-item">
+                                <div class="feature-icon">🤝</div>
+                                <h3>Expert Guidance</h3>
+                                <p>Get professional advice from certified real estate experts</p>
                             </div>
-                        </div>
-
-                        <div class="why-choose-us">
-                            <h2>Why Choose RVG Properties?</h2>
-                            <div class="features-grid">
-                                <div class="feature-card">
-                                    <div class="feature-icon">✅</div>
-                                    <h3>100% Verified Listings</h3>
-                                    <p>Every property is verified by our expert team for authenticity and accuracy</p>
-                                </div>
-                                <div class="feature-card">
-                                    <div class="feature-icon">🤝</div>
-                                    <h3>Expert Guidance</h3>
-                                    <p>Get professional advice from certified real estate experts</p>
-                                </div>
-                                <div class="feature-card">
-                                    <div class="feature-icon">💸</div>
-                                    <h3>Best Price Guarantee</h3>
-                                    <p>Compare prices across platforms and get the best deals</p>
-                                </div>
-                                <div class="feature-card">
-                                    <div class="feature-icon">🔒</div>
-                                    <h3>Secure Transactions</h3>
-                                    <p>Bank-grade security for all your transactions and data</p>
-                                </div>
-                                <div class="feature-card">
-                                    <div class="feature-icon">📱</div>
-                                    <h3>Digital Experience</h3>
-                                    <p>Seamless experience across web and mobile platforms</p>
-                                </div>
-                                <div class="feature-card">
-                                    <div class="feature-icon">🏆</div>
-                                    <h3>Award Winning</h3>
-                                    <p>Recognized as "Best Real Estate Platform" multiple times</p>
-                                </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">💸</div>
+                                <h3>Best Price Guarantee</h3>
+                                <p>Compare prices across platforms and get the best deals</p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🔒</div>
+                                <h3>Secure Transactions</h3>
+                                <p>Bank-grade security for all your transactions and data</p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">📱</div>
+                                <h3>Digital Experience</h3>
+                                <p>Seamless experience across web and mobile platforms</p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🏆</div>
+                                <h3>Award Winning</h3>
+                                <p>Recognized as "Best Real Estate Platform" multiple times</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
 
         <!-- Contact Page -->
-        <div id="contactPage" class="page">
-            <section class="contact-section">
-                <div class="container">
-                    <div class="contact-header">
-                        <h1>Contact Us</h1>
-                        <p>Get in touch with our real estate experts</p>
-                    </div>
-                    
-                    <div class="contact-content">
-                        <div class="contact-info">
-                            <div class="contact-card">
-                                <div class="contact-icon">📧</div>
-                                <h3>Email Us</h3>
-                                <p>rvgproperties@gmail.com</p>
-                                <small>We'll respond within 24 hours</small>
-                            </div>
-                            
-                            <div class="contact-card">
-                                <div class="contact-icon">📱</div>
-                                <h3>Call Us</h3>
-                                <p>+91 98765 43210</p>
-                                <small>Mon-Sat: 9 AM - 8 PM</small>
-                            </div>
-                            
-                            <div class="contact-card">
-                                <div class="contact-icon">📍</div>
-                                <h3>Visit Us</h3>
-                                <p>123 Real Estate Hub<br>Mumbai, Maharashtra 400001</p>
-                                <small>India</small>
-                            </div>
+        <section class="page" id="contactPage">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Contact Us</h1>
+                    <p>Get in touch with our real estate experts</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <h3>Email Us</h3>
+                            <p>rvgproperties@gmail.com</p>
+                            <span>We'll respond within 24 hours</span>
                         </div>
                         
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <h3>Call Us</h3>
+                            <p>+91 98765 43210</p>
+                            <span>Mon-Sat: 9 AM - 8 PM</span>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <h3>Visit Us</h3>
+                            <p>123 Real Estate Hub<br>Mumbai, Maharashtra 400001<br>India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-section">
+                        <h3>Send us a Message</h3>
                         <form class="contact-form" id="contactForm">
-                            <h3>Send us a Message</h3>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label">Full Name *</label>
-                                    <input type="text" class="form-control" id="contactName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Email Address *</label>
-                                    <input type="email" class="form-control" id="contactEmail" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="contactPhone">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Subject</label>
-                                    <select class="form-control" id="contactSubject">
-                                        <option value="general">General Inquiry</option>
-                                        <option value="property">Property Related</option>
-                                        <option value="technical">Technical Support</option>
-                                        <option value="partnership">Partnership</option>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="form-group">
-                                <label class="form-label">Message *</label>
-                                <textarea class="form-control" id="contactMessage" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+                                <label>Full Name *</label>
+                                <input type="text" name="name" required class="form-input">
                             </div>
-                            <button type="submit" class="btn btn--primary btn--lg">Send Message</button>
+                            
+                            <div class="form-group">
+                                <label>Email Address *</label>
+                                <input type="email" name="email" required class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Subject</label>
+                                <select name="subject" class="form-input">
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Property Related">Property Related</option>
+                                    <option value="Technical Support">Technical Support</option>
+                                    <option value="Partnership">Partnership</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Message *</label>
+                                <textarea name="message" required class="form-input" rows="5" placeholder="Tell us how we can help you..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn--primary">Send Message</button>
                         </form>
                     </div>
                 </div>
-            </section>
-        </div>
-
-        <!-- Admin Dashboard -->
-        <div id="adminPage" class="page">
-            <section class="admin-section">
-                <div class="container">
-                    <div class="admin-header">
-                        <h1>Admin Dashboard</h1>
-                        <div class="admin-actions">
-                            <button class="btn btn--primary" id="refreshDashboard">🔄 Refresh</button>
-                            <button class="btn btn--outline" id="exportData">📊 Export Data</button>
-                        </div>
-                    </div>
-                    
-                    <div class="admin-stats">
-                        <div class="stat-card">
-                            <div class="stat-icon pending">⏳</div>
-                            <div class="stat-content">
-                                <h3 id="pendingProperties">0</h3>
-                                <p>Pending Properties</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon approved">✅</div>
-                            <div class="stat-content">
-                                <h3 id="approvedProperties">0</h3>
-                                <p>Approved Properties</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon users">👥</div>
-                            <div class="stat-content">
-                                <h3 id="totalUsers">0</h3>
-                                <p>Total Users</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon inquiries">💬</div>
-                            <div class="stat-content">
-                                <h3 id="totalInquiries">0</h3>
-                                <p>Total Inquiries</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="admin-tabs">
-                        <button class="tab-btn active" data-tab="properties">Properties Management</button>
-                        <button class="tab-btn" data-tab="users">Users Management</button>
-                        <button class="tab-btn" data-tab="inquiries">Inquiries</button>
-                        <button class="tab-btn" data-tab="analytics">Analytics</button>
-                    </div>
-
-                    <div class="tab-content">
-                        <div id="propertiesTab" class="tab-pane active">
-                            <div class="tab-header">
-                                <h3>Properties Management</h3>
-                                <div class="tab-actions">
-                                    <select id="propertyStatusFilter" class="form-control">
-                                        <option value="">All Status</option>
-                                        <option value="pending">Pending</option>
-                                        <option value="approved">Approved</option>
-                                        <option value="rejected">Rejected</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div id="adminPropertiesGrid">
-                                <!-- Admin properties grid -->
-                            </div>
-                        </div>
-                        
-                        <div id="usersTab" class="tab-pane">
-                            <div class="tab-header">
-                                <h3>Users Management</h3>
-                                <div class="tab-actions">
-                                    <input type="text" placeholder="Search users..." class="form-control" id="userSearch">
-                                </div>
-                            </div>
-                            <div id="adminUsersTable">
-                                <!-- Users table -->
-                            </div>
-                        </div>
-                        
-                        <div id="inquiriesTab" class="tab-pane">
-                            <div class="tab-header">
-                                <h3>Inquiries Management</h3>
-                                <div class="tab-actions">
-                                    <select id="inquiryStatusFilter" class="form-control">
-                                        <option value="">All Status</option>
-                                        <option value="pending">Pending</option>
-                                        <option value="responded">Responded</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div id="adminInquiriesTable">
-                                <!-- Inquiries table -->
-                            </div>
-                        </div>
-
-                        <div id="analyticsTab" class="tab-pane">
-                            <div class="tab-header">
-                                <h3>Analytics Overview</h3>
-                            </div>
-                            <div class="analytics-grid">
-                                <div class="analytics-card">
-                                    <h4>Monthly Properties Added</h4>
-                                    <div class="analytics-number">+156</div>
-                                    <div class="analytics-trend positive">↗️ +23% from last month</div>
-                                </div>
-                                <div class="analytics-card">
-                                    <h4>User Registrations</h4>
-                                    <div class="analytics-number">+89</div>
-                                    <div class="analytics-trend positive">↗️ +15% from last month</div>
-                                </div>
-                                <div class="analytics-card">
-                                    <h4>Property Views</h4>
-                                    <div class="analytics-number">45.2K</div>
-                                    <div class="analytics-trend positive">↗️ +8% from last month</div>
-                                </div>
-                                <div class="analytics-card">
-                                    <h4>Inquiries Generated</h4>
-                                    <div class="analytics-number">1,234</div>
-                                    <div class="analytics-trend negative">↘️ -5% from last month</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Post Property Page -->
-        <div id="postPropertyPage" class="page">
-            <section class="post-property-section">
-                <div class="container">
-                    <div class="post-property-header">
-                        <h1>Post Your Property</h1>
-                        <p>List your property for free and reach millions of potential buyers</p>
-                    </div>
-                    
-                    <div class="property-form-container">
-                        <div class="form-progress">
-                            <div class="progress-step active" data-step="1">
-                                <span class="step-number">1</span>
-                                <span class="step-label">Basic Details</span>
-                            </div>
-                            <div class="progress-step" data-step="2">
-                                <span class="step-number">2</span>
-                                <span class="step-label">Property Details</span>
-                            </div>
-                            <div class="progress-step" data-step="3">
-                                <span class="step-number">3</span>
-                                <span class="step-label">Images & Media</span>
-                            </div>
-                            <div class="progress-step" data-step="4">
-                                <span class="step-number">4</span>
-                                <span class="step-label">Contact & Pricing</span>
-                            </div>
-                        </div>
-
-                        <form class="property-form" id="propertyForm">
-                            <!-- Step 1: Basic Details -->
-                            <div class="form-step active" data-step="1">
-                                <h3>Basic Property Information</h3>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Property Title *</label>
-                                        <input type="text" class="form-control" id="propertyTitle" required placeholder="e.g., 3BHK Apartment in Bandra West">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Property For *</label>
-                                        <select class="form-control" id="propertyFor" required>
-                                            <option value="">Select</option>
-                                            <option value="Buy">Sale</option>
-                                            <option value="Rent">Rent</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Property Type *</label>
-                                        <select class="form-control" id="propertyType" required>
-                                            <option value="">Select Type</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Property Category *</label>
-                                        <select class="form-control" id="propertyCategory" required>
-                                            <option value="">Select Category</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Complete Address *</label>
-                                    <input type="text" class="form-control" id="propertyLocation" required placeholder="e.g., Bandra West, Mumbai, Maharashtra">
-                                </div>
-                            </div>
-
-                            <!-- Step 2: Property Details -->
-                            <div class="form-step" data-step="2">
-                                <h3>Property Specifications</h3>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Area (sq ft) *</label>
-                                        <input type="number" class="form-control" id="propertyArea" required placeholder="e.g., 1200">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Furnishing Status</label>
-                                        <select class="form-control" id="propertyFurnishing">
-                                            <option value="Unfurnished">Unfurnished</option>
-                                            <option value="Semi-Furnished">Semi-Furnished</option>
-                                            <option value="Fully Furnished">Fully Furnished</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Parking</label>
-                                        <input type="text" class="form-control" id="propertyParking" placeholder="e.g., 2 Covered, 1 Open">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Property Age</label>
-                                        <select class="form-control" id="propertyAge">
-                                            <option value="Under Construction">Under Construction</option>
-                                            <option value="0-1 years">0-1 years</option>
-                                            <option value="1-5 years">1-5 years</option>
-                                            <option value="5-10 years">5-10 years</option>
-                                            <option value="10+ years">10+ years</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Property Description *</label>
-                                    <textarea class="form-control" id="propertyDescription" rows="4" required placeholder="Describe your property in detail - location benefits, amenities, nearby places, etc."></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Select Amenities</label>
-                                    <div class="amenities-grid" id="amenitiesSelection">
-                                        <!-- Amenities will be loaded here -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Step 3: Images & Media -->
-                            <div class="form-step" data-step="3">
-                                <h3>Upload Property Images</h3>
-                                <div class="image-upload-section">
-                                    <div class="upload-area" id="imageUploadArea">
-                                        <div class="upload-placeholder">
-                                            <div class="upload-icon">📸</div>
-                                            <h4>Upload Property Images</h4>
-                                            <p>Drag & drop images here or click to browse</p>
-                                            <p class="upload-info">• Upload up to 20 images<br>• Max 5MB per image<br>• Supported: JPG, PNG, WebP</p>
-                                            <input type="file" id="propertyImages" multiple accept="image/*" hidden>
-                                            <button type="button" class="btn btn--primary" id="browseImagesBtn">Browse Images</button>
-                                        </div>
-                                    </div>
-                                    <div class="uploaded-images" id="uploadedImages">
-                                        <!-- Uploaded images will appear here -->
-                                    </div>
-                                </div>
-                                
-                                <div class="additional-media">
-                                    <div class="form-group">
-                                        <label class="form-label">Virtual Tour Link (Optional)</label>
-                                        <input type="url" class="form-control" id="virtualTourUrl" placeholder="https://example.com/virtual-tour">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Property Video Link (Optional)</label>
-                                        <input type="url" class="form-control" id="propertyVideoUrl" placeholder="https://youtube.com/watch?v=...">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Step 4: Contact & Pricing -->
-                            <div class="form-step" data-step="4">
-                                <h3>Pricing & Contact Details</h3>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Price (₹) *</label>
-                                        <input type="number" class="form-control" id="propertyPrice" required placeholder="e.g., 2500000">
-                                        <small class="form-hint">Enter total price for sale or monthly rent</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Price Negotiable</label>
-                                        <select class="form-control" id="priceNegotiable">
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Contact Person *</label>
-                                        <input type="text" class="form-control" id="contactPerson" required placeholder="Your name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Contact Phone *</label>
-                                        <input type="tel" class="form-control" id="propertyPhone" required placeholder="+91 9876543210">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Preferred Contact Time</label>
-                                    <div class="checkbox-group">
-                                        <label><input type="checkbox" value="Morning (9 AM - 12 PM)"> Morning (9 AM - 12 PM)</label>
-                                        <label><input type="checkbox" value="Afternoon (12 PM - 5 PM)"> Afternoon (12 PM - 5 PM)</label>
-                                        <label><input type="checkbox" value="Evening (5 PM - 8 PM)"> Evening (5 PM - 8 PM)</label>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-terms">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="agreeTerms" required>
-                                        <span class="checkmark"></span>
-                                        I agree to the <a href="#" target="_blank">Terms & Conditions</a> and <a href="#" target="_blank">Privacy Policy</a>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Form Navigation -->
-                            <div class="form-navigation">
-                                <button type="button" class="btn btn--outline" id="prevStepBtn" style="display: none;">← Previous</button>
-                                <button type="button" class="btn btn--primary" id="nextStepBtn">Next →</button>
-                                <button type="submit" class="btn btn--primary btn--lg" id="submitPropertyBtn" style="display: none;">🚀 Submit Property</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Modals -->
-    
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal hidden">
-        <div class="modal-overlay"></div>
+    <!-- Loading Spinner -->
+    <div id="spinner" class="spinner hidden"></div>
+
+    <!-- Property Detail Modal -->
+    <div id="propertyModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>Welcome Back</h3>
-                <button class="modal-close" id="loginModalClose">&times;</button>
-            </div>
-            <form id="loginForm">
+            <button class="modal-close">&times;</button>
+            <h3 id="modalTitle"></h3>
+            <div id="modalGallery" class="gallery"></div>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h3>Welcome Back</h3>
+            <form class="auth-form" id="loginForm">
                 <div class="form-group">
-                    <label class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="loginEmail" required placeholder="Enter your email">
+                    <label>Email Address</label>
+                    <input type="email" name="email" required class="form-input">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" id="loginPassword" required placeholder="Enter your password">
+                    <label>Password</label>
+                    <input type="password" name="password" required class="form-input">
                 </div>
-                <div class="form-options">
+                <div class="form-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" id="rememberMe">
-                        <span class="checkmark"></span>
-                        Remember me
+                        <input type="checkbox" name="remember"> Remember me
                     </label>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                <button type="submit" class="btn btn--primary btn--full">Login</button>
+                <div class="auth-footer">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <p>Don't have an account? <a href="#" id="showRegisterModal">Create Account</a></p>
+                </div>
             </form>
-            <div class="modal-footer">
-                <p>Don't have an account? <a href="#" id="showRegisterModal">Create Account</a></p>
-            </div>
         </div>
     </div>
 
     <!-- Register Modal -->
-    <div id="registerModal" class="modal hidden">
-        <div class="modal-overlay"></div>
+    <div class="modal" id="registerModal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>Create Account</h3>
-                <button class="modal-close" id="registerModalClose">&times;</button>
-            </div>
-            <form id="registerForm">
+            <button class="modal-close">&times;</button>
+            <h3>Create Account</h3>
+            <form class="auth-form" id="registerForm">
                 <div class="form-group">
-                    <label class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="registerName" required placeholder="Enter your full name">
+                    <label>Full Name</label>
+                    <input type="text" name="name" required class="form-input">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="registerEmail" required placeholder="Enter your email">
+                    <label>Email Address</label>
+                    <input type="email" name="email" required class="form-input">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" id="registerPhone" placeholder="+91 9876543210">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" class="form-input">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" id="registerPassword" required placeholder="Create a strong password">
+                    <label>Password</label>
+                    <input type="password" name="password" required class="form-input">
                 </div>
                 <div class="form-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" required>
-                        <span class="checkmark"></span>
-                        I agree to the <a href="#" target="_blank">Terms & Conditions</a>
+                        <input type="checkbox" name="terms" required> I agree to the
+                        <a href="#" class="terms-link">Terms & Conditions</a>
                     </label>
                 </div>
-                <button type="submit" class="btn btn--primary btn--full-width">Create Account</button>
+                <button type="submit" class="btn btn--primary btn--full">Create Account</button>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" id="showLoginModal">Sign In</a></p>
+                </div>
             </form>
-            <div class="modal-footer">
-                <p>Already have an account? <a href="#" id="showLoginModal">Sign In</a></p>
-            </div>
         </div>
     </div>
 
-    <!-- Property Detail Modal -->
-    <div id="propertyModal" class="modal modal-large hidden">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="propertyModalTitle"></h3>
-                <div class="property-actions">
-                    <button class="btn btn--outline btn--sm" id="sharePropertyBtn">📤</button>
-                    <button class="btn btn--outline btn--sm" id="savePropertyBtn">❤️</button>
-                    <button class="modal-close" id="propertyModalClose">&times;</button>
-                </div>
-            </div>
-            <div class="property-modal-content" id="propertyModalContent">
-                <!-- Property details will be loaded here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- EMI Calculator Modal -->
-    <div id="emiModal" class="modal hidden">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>EMI Calculator</h3>
-                <button class="modal-close" id="emiModalClose">&times;</button>
-            </div>
-            <div class="emi-calculator">
-                <div class="form-group">
-                    <label class="form-label">Loan Amount (₹)</label>
-                    <input type="number" class="form-control" id="loanAmount" placeholder="Enter loan amount">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Interest Rate (% per annum)</label>
-                    <input type="number" class="form-control" id="interestRate" step="0.1" placeholder="Enter interest rate">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Loan Tenure (years)</label>
-                    <input type="number" class="form-control" id="loanTenure" placeholder="Enter loan tenure">
-                </div>
-                <button class="btn btn--primary" id="calculateEmi">Calculate EMI</button>
-                <div class="emi-result" id="emiResult" style="display: none;">
-                    <h4>Monthly EMI: ₹<span id="monthlyEmi">0</span></h4>
-                    <p>Total Amount: ₹<span id="totalAmount">0</span></p>
-                    <p>Total Interest: ₹<span id="totalInterest">0</span></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notifications -->
-    <div id="toastContainer" class="toast-container">
-        <!-- Toasts will be dynamically added here -->
-    </div>
+    <!-- Notification System -->
+    <div class="notifications" id="notifications"></div>
 
     <script src="app.js"></script>
 </body>
