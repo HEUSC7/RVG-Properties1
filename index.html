@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer src="https://app.fastbots.ai/embed.js" data-bot-id="cmghuc0ic05udqq1mewjlu8dy"></script>
+    <script src="https://cdn.bolna.ai/widgets/voice-agent.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -637,5 +638,24 @@
     </div>
 
     <script src="app.js"></script>
+    <button id="startCall">Talk to Voice Agent</button>
+<script>
+  document.getElementById('startCall').onclick = function() {
+    fetch('https://api.bolna.ai/call', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer bn-58435791e45b449a83559af935f0b480',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        agent_id: 'eb20db09-45c4-4250-941b-9488ef2c24e4',
+        recipient_phone_number: '+919373798454'
+      })
+    })
+    .then(response => response.json())
+    .then(data => console.log('Call started:', data))
+    .catch(error => console.error('Error:', error));
+  };
+</script>
 </body>
 </html>
